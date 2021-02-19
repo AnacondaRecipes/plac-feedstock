@@ -1,8 +1,8 @@
 {% set name = "plac" %}
-{% set version = "1.3.1" %}
+{% set version = "1.3.2" %}
 {% set bundle = "tar.gz" %}
 {% set hash_type = "sha256" %}
-{% set hash = "9ebe589ae371c0f863848cebffbfa1394e814a9b8b5a5a42ea373572d29d856d" %}
+{% set hash = "d598bc4b549282ec3a1fde40ddc4a273e051237b5aa70c44f572306a13c651e8" %}
 {% set build = 1 %}
 
 package:
