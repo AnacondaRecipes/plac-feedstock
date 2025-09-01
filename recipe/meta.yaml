@@ -42,7 +42,11 @@ about:
   home: https://github.com/ialbert/plac
   license: BSD-2-Clause
   license_family: BSD
+  license_file: LICENSE.txt
   summary: The smartest command line arguments parser in the world
+  description: |
+    plac is a Python package that can generate command line parameters from function signatures
+    plac works on Python 2.6 through all versions of Python 3
   doc_url: https://plac.readthedocs.io
   dev_url: https://github.com/ialbert/plac
 
