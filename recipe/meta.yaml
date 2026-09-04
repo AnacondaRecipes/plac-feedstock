@@ -8,6 +8,8 @@ package:
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: 86a50abd40c5a6ea9695b45a1f08637e744e0a57249c24d1593cad9eda1f8aac
+  patches:
+    - patches/0001-fix-windows-multiprocessing-context.patch
 
 build:
   number: 0

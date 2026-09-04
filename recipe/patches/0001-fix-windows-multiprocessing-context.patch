@@ -1,0 +1,26 @@
+From 36d6fd244d815dbaaf518c729707db6e7989e361 Mon Sep 17 00:00:00 2001
+From: Andrii Vetroumov <avetroumov@anaconda.com>
+Date: Fri, 4 Sep 2026 13:53:26 +0300
+Subject: [PATCH] fix windows multiprocessing context
+
+---
+ plac_ext.py | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/plac_ext.py b/plac_ext.py
+index 793d86a..f9a5c85 100644
+--- a/plac_ext.py
++++ b/plac_ext.py
+@@ -18,7 +18,8 @@ import threading
+ import plac_core
+ 
+ version = sys.version_info[:2]
+-multiprocessing = mp.get_context("fork")
++# multiprocessing = mp.get_context("fork")
++multiprocessing = mp.get_context("fork") if sys.platform != "win32" else mp.get_context("spawn")
+ 
+ if version < (3, 5):
+     from imp import load_source
+-- 
+2.54.0
+
