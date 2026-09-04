@@ -39,10 +39,7 @@ test:
   commands:
     - pip check
     - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
-    # plac try to use fork which is unavailable on Windows.
-    # https://github.com/ialbert/plac/blob/394a8c3718807751e07a11ec3582cb87d215da5d/plac_ext.py#L21
-    # ValueError: cannot find context for 'fork'
-    - pytest doc/test_plac.py -v -k "not test_doctest"  # [not win]
+    - pytest doc/test_plac.py -v -k "not test_doctest"
 
 about:
   home: https://github.com/ialbert/plac
