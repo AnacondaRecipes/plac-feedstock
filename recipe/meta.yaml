@@ -1,17 +1,23 @@
 {% set name = "plac" %}
-{% set version = "1.4.5" %}
+{% set version = "1.4.6" %}
 
 package:
-  name: {{ name|lower }}
+  name: {{ name }}
   version: {{ version }}
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 5f05bf85235c017fcd76c73c8101d4ff8e96beb3dc58b9a37de49cac7de82d14
+  sha256: 86a50abd40c5a6ea9695b45a1f08637e744e0a57249c24d1593cad9eda1f8aac
+  patches:
+    # plac uses fork which is unavailable on Windows.
+    # https://github.com/ialbert/plac/blob/394a8c3718807751e07a11ec3582cb87d215da5d/plac_ext.py#L21
+    # ValueError: cannot find context for 'fork'
+    - patches/0001-fix-windows-multiprocessing-context.patch
 
 build:
   number: 0
-  skip: true  # [py<39]
+  # https://github.com/ialbert/plac/blob/394a8c3718807751e07a11ec3582cb87d215da5d/pixi.toml#L11
+  skip: true  # [py<310]
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation --ignore-installed --no-cache-dir -vv
 
 requirements:
