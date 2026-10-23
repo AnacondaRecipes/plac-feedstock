@@ -8,11 +8,6 @@ package:
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: 957ffbab8ea8ab8c0b9f2694daa2a95f3560151cd162bcbc91e97ff94d45c4f9
-  patches:
-    # plac uses fork which is unavailable on Windows.
-    # https://github.com/ialbert/plac/blob/394a8c3718807751e07a11ec3582cb87d215da5d/plac_ext.py#L21
-    # ValueError: cannot find context for 'fork'
-    - patches/0001-fix-windows-multiprocessing-context.patch
 
 build:
   number: 0
@@ -42,7 +37,7 @@ test:
   commands:
     - pip check
     - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
-    - pytest doc/test_plac.py -v -k "not test_doctest"
+    - pytest doc/test_plac.py -vv -k "not test_doctest"
 
 about:
   home: https://github.com/ialbert/plac
